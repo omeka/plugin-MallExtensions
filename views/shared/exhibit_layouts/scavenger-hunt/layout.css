@@ -1,0 +1,11 @@
+.exhibits.show .content {
+    padding: 0 !important;
+}
+
+.transcript {
+    display: none;
+}
+
+.exhibit-items img {
+    margin-bottom: 0;
+}
