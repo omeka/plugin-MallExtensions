@@ -24,12 +24,13 @@ $image = '';
         <h3>Found it!</h3>
         <a href="<?php echo $movie; ?>" class="movie" target="_blank">Hear about it</a>
         <a href="#" class="text">Read about it</a>
-        <?php if ($text): ?>
-        <div class="transcript">
-            <?php echo $text; ?>
-        </div>
-        <?php endif; ?>
+        <a href="#" class="done">Done</a>
     </div>
+    <?php if ($text): ?>
+    <div class="transcript">
+        <?php echo $text; ?>
+    </div>
+    <?php endif; ?>
 <?php else: ?>
     <div class="plain-text">
         <?php echo $text; ?>
