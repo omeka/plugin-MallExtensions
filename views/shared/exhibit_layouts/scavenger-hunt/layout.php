@@ -4,6 +4,7 @@ $position = isset($options['toggle-found'])
     : 'on';
 $movie = '';
 $image = '';
+$count = 0;
 ?>
 <?php foreach ($attachments as $attachment): ?>
     <?php $file = $attachment->getFile(); ?>
@@ -15,23 +16,26 @@ $image = '';
 <?php endforeach; ?>
 
 <?php if ($image && $options['toggle-found'] == 'on'): ?>
-    <?php echo file_image('original', array(), $image); ?>
+    <div class="item-collapsed">
+        <?php echo file_image('square_thumbnail', array('class' => 'thumbnail'), $image); ?>
+        <h4><a href="#" class="hunt-item"><?php echo metadata($image, array('Dublin Core', 'Title')); ?></a></h4>
+    </div>
+    <div class="item-expanded">
+        <?php echo file_image('original', array('class' => 'full'), $image); ?>
+        <div class="found-actions">
+            <h3>Found it!</h3>
+            <a href="<?php echo $movie; ?>" class="movie" target="_blank">Hear about it</a>
+            <a href="#" class="text">Read about it</a>
+            <a href="#" class="done">Done</a>
+        </div>
+        <?php if ($text): ?>
+        <div class="transcript">
+            <?php echo $text; ?>
+        </div>
+        <?php endif; ?>
+    </div>
 <?php elseif ($image): ?>
     <?php echo file_image('original', array('class'=>'no-actions'), $image); ?>
-<?php endif; ?>
-<?php if ($options['toggle-found'] == 'on'): ?>
-    <div class="found-actions">
-        <h3>Found it!</h3>
-        <a href="<?php echo $movie; ?>" class="movie" target="_blank">Hear about it</a>
-        <a href="#" class="text">Read about it</a>
-        <a href="#" class="done">Done</a>
-    </div>
-    <?php if ($text): ?>
-    <div class="transcript">
-        <?php echo $text; ?>
-    </div>
-    <?php endif; ?>
-<?php else: ?>
     <div class="plain-text">
         <?php echo $text; ?>
     </div>
